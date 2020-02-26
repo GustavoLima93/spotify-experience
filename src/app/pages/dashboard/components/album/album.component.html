@@ -1,0 +1,6 @@
+<div [@myAnimationTrigger]="albumState" class="album" (click)="navegaParaMusicasDoAlbum()"><img
+    [src]="album.images[1].url" width="150" height="150" alt=""></div>
+<div [@myAnimationTrigger]="albumState" class="album__footer">
+  <small class="album__footer--name">{{album.name}}</small>
+  <small class="album__footer--artist">{{album.artists[0].name}}</small>
+</div>

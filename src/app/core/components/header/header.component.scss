@@ -1,0 +1,19 @@
+.header {
+  margin: 20px 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  h3 {
+    color: #ffffff;
+    margin-left: 10px;
+  }
+
+  img {
+    background: #ffffff;
+    height: 29px;
+    width: 29px;
+    border-radius: 50%;
+    border: 1px solid #ffffff;
+  }
+}

@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "spotify-experience"
+    }
+  },
+  "defaultProject": "spotify-experience",
+  "cli": {
+    "analytics": false
+  }
 }

@@ -1,0 +1,18 @@
+* {
+  height: 70vh;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .auth {
+    h1 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+    }
+  }
+}

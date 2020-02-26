@@ -1,0 +1,20 @@
+<div class="back">
+  <a [routerLink]="['/albums']">
+    <img src="../../../../../assets/img/left.svg" height="20" width="20" alt=""> Voltar </a>
+</div>
+<div class="content">
+  <div>
+    <div class="card">
+      <img [src]="albumDetalhe.img" width="300" height="300" alt="">
+    </div>
+    <div class="card__footer">
+      <small class="card__footer--artist">{{albumDetalhe.nomeAlbum}}</small>
+      <small class="card__footer--album">{{albumDetalhe.nomeArtista}}</small>
+    </div>
+  </div>
+  <div class="list">
+    <ul>
+      <app-track *ngFor="let track of tracks; let i = index" [track]="track" [numberMusic]="i + 1"></app-track>
+    </ul>
+  </div>
+</div>

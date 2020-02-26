@@ -1,0 +1,65 @@
+.card {
+  height: 300px;
+  width: 300px;
+  background: #fafafa;
+  border-radius: 4px;
+
+  &__footer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 5px 0;
+    max-width: 300px;
+
+    &--artist {
+      color: #fafafa;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    &--album {
+      color: #999999;
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+}
+
+.back {
+  margin: 10px 10px 30px 10px;
+  a {
+    text-decoration: none;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+
+    img {
+      margin-right: 20px;
+    }
+  }
+}
+
+.content {
+  display: flex;
+  margin: 10px;
+}
+
+.list {
+  display: flex;
+  flex: 1;
+
+  ul {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 600px) {
+  .content {
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 20px;
+  }
+}
