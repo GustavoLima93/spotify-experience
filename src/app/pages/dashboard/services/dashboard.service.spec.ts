@@ -4,7 +4,7 @@ import { DashboardService } from './dashboard.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginService } from '../../login/services/login.service';
 
-import { of, from } from 'rxjs';
+import { of } from 'rxjs';
 import { Albums } from '../models/search.model';
 
 let httpClientSpy: { get: jasmine.Spy };

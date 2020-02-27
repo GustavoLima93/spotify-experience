@@ -3,6 +3,7 @@
 - nodeJS versão 12.x
 - Angular versão 9.x
 - Web API spotify v1
+- Link do [Projeto](https://spotify-experience.netlify.com/login) "simulando" ambiente prod
 
 # Iniciar o Projeto Local
 
