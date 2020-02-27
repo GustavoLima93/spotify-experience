@@ -4,7 +4,7 @@ export const environment = {
   client_secret: 'aacb62a67d1e466a83ec37a3e04bb1fb',
   spotify_url_auth: 'https://accounts.spotify.com',
   response_type: 'code',
-  redirect_uri: 'http%3A%2F%2Flocalhost%3A4200%2Flogin',
+  redirect_uri: 'https%3A%2F%2Fspotify-experience.netlify.com%2Flogin',
   scope: 'user-read-private%20user-read-email',
   state: '34fFs29kd09',
   show_dialog: 'true',
