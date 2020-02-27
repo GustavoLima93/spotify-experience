@@ -11,7 +11,7 @@
 - Executar o comando npm start || yarn start para inicializar o servidor
 - Acesse do seu navegador a url > http://localhost:4200/
 
-# Executar unitários
+# Executar testes unitários
 
 - Executar o comando npm test || yarn test
 - Executar o comando npm test:headless || yarn test:headless para rodar no navegador headless
