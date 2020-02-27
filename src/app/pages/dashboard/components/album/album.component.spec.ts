@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AlbumComponent } from './album.component';
+import { DashboardModule } from '../../dashboard.module';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
+import { UtilService } from 'src/app/shared/services/util.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('AlbumComponent', () => {
   let component: AlbumComponent;
@@ -8,9 +13,14 @@ describe('AlbumComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AlbumComponent ]
-    })
-    .compileComponents();
+      imports: [
+        DashboardModule,
+        HttpClientModule,
+        RouterTestingModule,
+        BrowserAnimationsModule,
+      ],
+      providers: [UtilService],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +29,7 @@ describe('AlbumComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Testa instancia de AlbumComponent', () => {
     expect(component).toBeTruthy();
   });
 });

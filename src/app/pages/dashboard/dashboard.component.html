@@ -1,11 +1,11 @@
 <div class="m--10">
-  <app-search (emiteAlbunsBuscados)="recebeAlbunsBuscados($event)"></app-search>
+  <app-search (emiteAlbunsBuscados)="recebeAlbunsBuscados($event)"></app-search> <!-- Componente Search -->
 
   <div class="albums">
     <p *ngIf="ultimaBusca && albuns.length">Resultados encontrados para "{{ultimaBusca}}"</p>
     <div class="grid">
       <div *ngFor="let album of albuns">
-        <app-album [album]="album"></app-album>
+        <app-album [album]="album"></app-album> <!-- Componente Album -->
       </div>
     </div> <!-- Fim grid Layout -->
   </div> <!-- Fim albums -->

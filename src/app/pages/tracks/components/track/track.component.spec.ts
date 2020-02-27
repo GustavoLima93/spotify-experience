@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TrackComponent } from './track.component';
+import { TracksModule } from '../../tracks.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('TrackComponent', () => {
   let component: TrackComponent;
@@ -8,9 +10,8 @@ describe('TrackComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TrackComponent ]
-    })
-    .compileComponents();
+      imports: [TracksModule, BrowserAnimationsModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +20,7 @@ describe('TrackComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Testa a instancia de TrackComponent', () => {
     expect(component).toBeTruthy();
   });
 });

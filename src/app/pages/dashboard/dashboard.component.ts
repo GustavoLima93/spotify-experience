@@ -1,12 +1,14 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 
+import { Item } from './models/search.model';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit, DoCheck {
-  public albuns = [];
+  public albuns: Item[] = [];
 
   public ultimaBusca: string;
 
@@ -25,7 +27,7 @@ export class DashboardComponent implements OnInit, DoCheck {
     this.ultimaBusca = ultimaBusca || '';
   }
 
-  recebeAlbunsBuscados(albuns: any): void {
+  recebeAlbunsBuscados(albuns: Item[]): void {
     this.albuns = albuns;
   }
 }

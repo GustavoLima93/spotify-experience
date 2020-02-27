@@ -1,13 +1,15 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
-import { UtilService } from 'src/app/shared/services/util.service';
+import { Component, Input, OnInit } from '@angular/core';
 import {
-  trigger,
+  animate,
   state,
   style,
   transition,
-  animate,
+  trigger,
 } from '@angular/animations';
+import { Router } from '@angular/router';
+
+import { UtilService } from 'src/app/shared/services/util.service';
+import { Item } from '../../models/search.model';
 
 @Component({
   selector: 'app-album',
@@ -27,7 +29,7 @@ export class AlbumComponent implements OnInit {
   public albumState = 'ready';
 
   @Input()
-  public album;
+  public album: Item;
 
   constructor(private router: Router, private utilService: UtilService) {}
 

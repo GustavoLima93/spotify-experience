@@ -1,9 +1,12 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, from } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
-import { LoginService } from '../../login/services/login.service';
+import { Injectable } from '@angular/core';
+import { from, Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+
 import { environment } from 'src/environments/environment';
+
+import { LoginService } from '../../login/services/login.service';
+import { Albums, Search } from '../models/search.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,10 +15,10 @@ export class DashboardService {
   constructor(private http: HttpClient, private loginService: LoginService) {}
 
   verificaCacheOuBuscaNoSpotify(
-    search,
+    search: string,
     offset = 0,
     limit = 20
-  ): Observable<any | any> {
+  ): Observable<Search | any> {
     if (search) {
       localStorage.setItem('ultima_busca', search);
 
@@ -31,7 +34,7 @@ export class DashboardService {
     return from([{ items: [] }]);
   }
 
-  buscaAlbumSpotify(search, offset, limit): Observable<any> {
+  buscaAlbumSpotify(search, offset, limit): Observable<Search | Albums> {
     const params = new HttpParams()
       .set('q', search)
       .set('type', 'album')
@@ -39,11 +42,13 @@ export class DashboardService {
       .set('limit', String(limit));
 
     return this.http
-      .get<any>(`${environment.spotify_url}/search`, { params })
+      .get<Search | Albums>(`${environment.spotify_url}/search`, { params })
       .pipe(
         tap(() => this.loginService.atualizaToken()),
-        map((response: any) => response.albums),
-        tap(response => localStorage.setItem(search, JSON.stringify(response)))
+        map((response: Search) => response.albums),
+        tap((response: Albums) =>
+          localStorage.setItem(search, JSON.stringify(response))
+        )
       );
   }
 }

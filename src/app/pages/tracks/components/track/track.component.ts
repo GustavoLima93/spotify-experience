@@ -1,13 +1,14 @@
-import { Component, OnInit, Input } from '@angular/core';
-
+import { Component, Input, OnInit } from '@angular/core';
 import {
-  trigger,
+  animate,
+  keyframes,
   state,
   style,
   transition,
-  animate,
-  keyframes,
+  trigger,
 } from '@angular/animations';
+
+import { ItemTrack } from '../../models/track.model';
 
 @Component({
   selector: 'app-track',
@@ -49,7 +50,7 @@ export class TrackComponent implements OnInit {
   public rowState = 'ready';
 
   @Input()
-  public track;
+  public track: ItemTrack;
 
   @Input()
   public numberMusic: number;

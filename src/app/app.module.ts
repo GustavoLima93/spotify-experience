@@ -1,12 +1,13 @@
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthInterceptor } from './shared/services/auth.interceptor.service';
 import { HeaderComponent } from './core/components/header/header.component';
+import { AuthInterceptor } from './shared/services/auth.interceptor.service';
+import { ApplicationErrorHandler } from './shared/services/error-handler.service';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
@@ -18,6 +19,7 @@ import { HeaderComponent } from './core/components/header/header.component';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: ErrorHandler, useClass: ApplicationErrorHandler },
   ],
   bootstrap: [AppComponent],
 })

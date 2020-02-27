@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { map, take, tap, switchMap } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
+
 import { environment } from 'src/environments/environment';
 
 import { Auth } from '../models/auth.model';
@@ -29,7 +30,7 @@ export class LoginService {
       'refresh_token'
     )}`;
     return this.http
-      .post(`${environment.spotify_url_auth}/api/token`, body, {
+      .post<TokenRefresh>(`${environment.spotify_url_auth}/api/token`, body, {
         headers: this.preparaAuthorizationHeader,
       })
       .pipe(

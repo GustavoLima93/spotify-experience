@@ -1,13 +1,14 @@
 import { Injectable, Injector } from '@angular/core';
 
 import {
+  HttpEvent,
+  HttpHandler,
   HttpInterceptor,
   HttpRequest,
-  HttpHandler,
-  HttpEvent,
 } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
+
 import { LoginService } from 'src/app/pages/login/services/login.service';
 
 @Injectable()

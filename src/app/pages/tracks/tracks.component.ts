@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { from, Subscription } from 'rxjs';
+import { catchError, take } from 'rxjs/operators';
 
-import { TrackService } from '../../services/track.service';
-import { Subscription } from 'rxjs';
+import { Params } from './models/params-track.model';
+import { ItemTrack } from './models/track.model';
+
+import { TrackService } from './services/track.service';
 import { UtilService } from 'src/app/shared/services/util.service';
-import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tracks',
@@ -12,7 +15,7 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./tracks.component.scss'],
 })
 export class TracksComponent implements OnInit {
-  public tracks = [];
+  public tracks: ItemTrack[] = [];
   public albumDetalhe: any;
 
   constructor(
@@ -22,14 +25,24 @@ export class TracksComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(
+    this.verificaParametrosDaRota();
+    this.verificaDetalheDoAlbumNoBehaviorSubjectOuNoCache();
+  }
+
+  verificaParametrosDaRota(): Subscription {
+    return this.activatedRoute.params.pipe(take(1)).subscribe(
       (param: Params): Subscription => {
         return this.buscaTracksNoSpotify(param);
       }
     );
+  }
 
-    this.utilService.observeDetalhesDOAlbum
-      .pipe(take(1))
+  verificaDetalheDoAlbumNoBehaviorSubjectOuNoCache(): Subscription {
+    return this.utilService.observeDetalhesDOAlbum
+      .pipe(
+        take(1),
+        catchError(() => from([]))
+      )
       .subscribe(albumDetalhe =>
         albumDetalhe.id
           ? (this.albumDetalhe = albumDetalhe)
@@ -39,13 +52,10 @@ export class TracksComponent implements OnInit {
       );
   }
 
-  buscaTracksNoSpotify({ id }) {
+  buscaTracksNoSpotify({ id }): Subscription {
     return this.trackService
       .buscaTracksNoSpotify(id)
-      .subscribe(tracks => (this.tracks = tracks));
+      .pipe(take(1))
+      .subscribe((tracks: ItemTrack[]) => (this.tracks = tracks));
   }
-}
-
-export interface Params {
-  id: string;
 }

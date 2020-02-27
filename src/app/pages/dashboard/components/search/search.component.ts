@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { from } from 'rxjs';
+import { from, Subscription } from 'rxjs';
 import {
   catchError,
   debounceTime,
@@ -9,6 +9,7 @@ import {
 } from 'rxjs/operators';
 
 import { DashboardService } from '../../services/dashboard.service';
+import { Albums, Item } from '../../models/search.model';
 
 @Component({
   selector: 'app-search',
@@ -19,7 +20,7 @@ export class SearchComponent implements OnInit {
   public formularioDeBusca: FormGroup;
 
   @Output()
-  public emiteAlbunsBuscados = new EventEmitter<any>();
+  public emiteAlbunsBuscados = new EventEmitter<Item[]>();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -27,24 +28,31 @@ export class SearchComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.formularioDeBusca = this.formBuilder.group({
-      campoDeBusca: [localStorage.getItem('ultima_busca') || ''],
-    });
+    this.iniciaFormularioDeBusca();
+    this.inicializaInscricaoEmCampoQueRealizaBuscaNoSpotify();
+  }
 
-    this.formularioDeBusca.controls.campoDeBusca.valueChanges
+  iniciaFormularioDeBusca(): FormGroup {
+    return (this.formularioDeBusca = this.formBuilder.group({
+      campoDeBusca: [localStorage.getItem('ultima_busca') || ''],
+    }));
+  }
+
+  inicializaInscricaoEmCampoQueRealizaBuscaNoSpotify(): Subscription {
+    return this.formularioDeBusca.controls.campoDeBusca.valueChanges
       .pipe(
         debounceTime(500),
         distinctUntilChanged(),
-        switchMap(texto =>
+        switchMap((texto: string) =>
           this.dashboarService
             .verificaCacheOuBuscaNoSpotify(texto)
             .pipe(catchError(() => from([])))
         )
       )
-      .subscribe((albuns: any) => this.emitTexoDeBusca(albuns.items));
+      .subscribe((albuns: Albums) => this.emiteAlbuns(albuns.items));
   }
 
-  emitTexoDeBusca(value: any): void {
-    this.emiteAlbunsBuscados.emit(value);
+  emiteAlbuns(value: Item[]): void {
+    return this.emiteAlbunsBuscados.emit(value);
   }
 }

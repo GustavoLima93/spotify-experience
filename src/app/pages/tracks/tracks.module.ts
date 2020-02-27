@@ -1,10 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { TracksRoutingModule } from './tracks-routing.module';
-import { TracksComponent } from './components/tracks/tracks.component';
-import { TrackComponent } from './components/track/track.component';
 import { DurationPipe } from 'src/app/shared/pipes/duration.pipe';
+
+import { TrackComponent } from './components/track/track.component';
+import { TracksRoutingModule } from './tracks-routing.module';
+import { TracksComponent } from './tracks.component';
 
 @NgModule({
   declarations: [TracksComponent, TrackComponent, DurationPipe],
