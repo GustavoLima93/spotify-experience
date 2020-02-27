@@ -1,27 +1,22 @@
-# SpotifyExperience
+# Tecnologias utilizadas para desenvolvimento do projeto
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.19.
+- nodeJS versão 12.x
+- Angular versão 9.x
+- Web API spotify v1
 
-## Development server
+# Iniciar o Projeto Local
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Clone o Repositorio
+- Executar o comando npm install || yarn na raiz do projeto para instalar as dependências
+- Executar o comando npm start || yarn start para inicializar o servidor
+- Acesse do seu navegador a url > http://localhost:4200/
 
-## Code scaffolding
+# Executar unitários
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Executar o comando npm test || yarn test
+- Executar o comando npm test:headless || yarn test:headless para rodar no navegador headless
+- Foi utilizado o navegador Google Chrome para executar os testes
 
-## Build
+# Executar build prod
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- Executar comando npm build:prod || yarn build:prod
